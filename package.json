@@ -107,3 +107,8 @@
     "bufferutil": "^4.0.8"
   }
 }
+{
+  "devDependencies": {
+    "@netlify/plugin-essential-next": "^latest"
+  }
+}
