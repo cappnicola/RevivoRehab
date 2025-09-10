@@ -1,0 +1,35 @@
+[build]
+  publish = "dist/public"
+  command = "vite build"
+
+[build.environment]
+  NODE_VERSION = "20"
+  VITE_BUILD_TYPE = "static"
+
+# Redirect tutte le richieste a index.html per SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Form handling per Netlify Forms
+[[plugins]]
+  package = "@netlify/plugin-essential-next"
+
+# Headers per ottimizzazioni
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Settings per forms
+[forms]
+  settings.skip_forms_processing = false
